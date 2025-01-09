@@ -28,6 +28,7 @@ public class move : MonoBehaviour
             if (mousePos.x < pos.x)
             {
                 pos.x += moveSpeed;
+               
             }
             else if (mousePos.x > pos.x)
             {
