@@ -16,7 +16,14 @@ public class LerpDemo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // number += Time.deltaTime;
+        number += Time.deltaTime;
+
+        if (number > 1)
+        {
+            number = 0;
+        }
+      
+
         transform.position = Vector2.Lerp(start.position,end.position,number);
 
     }
