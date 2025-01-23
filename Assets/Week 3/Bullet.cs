@@ -8,7 +8,16 @@ public class Bullet : MonoBehaviour
     public bool hasBeenFired = false;
     void Update()
     {
-        PointAtMouse();
+        if (hasBeenFired == true)
+        {
+            Movement();
+
+        }
+        else
+        {
+            PointAtMouse();
+        }
+       
     }
 
     void PointAtMouse()
@@ -22,6 +31,6 @@ public class Bullet : MonoBehaviour
 
     void Movement()
     {
-        
+        transform.position += transform.up * speed * Time.deltaTime;
     }
 }
