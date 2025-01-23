@@ -26,4 +26,9 @@ public class spriteSpawner : MonoBehaviour
         // = spawnedBullet.GetComponent<Bullet>();
 
     }
+
+    public void isClicked()
+    {
+        Destroy(gameObject);
+    }
 }
