@@ -12,10 +12,10 @@ public class FollowMouse : MonoBehaviour
         transform.position = mousePosition;
     }
 
-    // 当触发器触发时调用此方法
+    // Activate when triggered collision
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // 检查碰撞对象的标签是否是"thing"
+        // Check the object wheather is "thing"
         if (collision.gameObject.tag == "thing")
 
         {
@@ -23,7 +23,7 @@ public class FollowMouse : MonoBehaviour
           
             if (Input.GetMouseButtonDown(0))
             {
-                // 销毁带有"thing"标签的对象
+                // Destroy"thing"tag object
                 Destroy(collision.gameObject);
             }
         }
