@@ -30,7 +30,7 @@ public class colorController : MonoBehaviour
        */
         // float 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        where = mousePos.x - location;
+        where = Mathf.Abs(mousePos.x - location);
         number = where*shrink;
        // float Red = Mathf.Lerp(0f, 1f, number);
         float Other = Mathf.Lerp(1f, 0f, number);
