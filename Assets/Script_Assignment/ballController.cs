@@ -52,9 +52,10 @@ public class ballController : MonoBehaviour
             RotateBall();
             MoveToTarget();
         }
-
+        
         else if (player.state == 2)
         {
+           rotationSpeed = -18f;
             RotateBall();
             MoveToPlayer();
         }
@@ -83,6 +84,8 @@ public class ballController : MonoBehaviour
          //   player.isKickOut = false; // Stop moves
             transform.position = targetPosition; // Get to that location
             //stop rotating
+           // player.state = 2;
+           rotationSpeed = 0;
         }
     }
     void MoveToPlayer()
