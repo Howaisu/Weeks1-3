@@ -10,8 +10,8 @@ public class ballController : MonoBehaviour
     public Transform BottomRight;
 
     // the basic data of ball
-    public float Speed = 4f;
-    public float rotationSpeed = 100f;
+    public float Speed = 4f;// (Don't forget make a speed curve later)
+    public float rotationSpeed = -1000f;
 
     //
     Vector3 targetPosition;
@@ -29,16 +29,17 @@ public class ballController : MonoBehaviour
             if (worldPosition.x >= TopLeft.position.x && worldPosition.x <= BottomRight.position.x &&
                 worldPosition.y >= BottomRight.position.y && worldPosition.y <= TopLeft.position.y)
             {
+                player.state = 1;
                 // Set playerController's playerIsKicking and isKickOut as true
-                player.playerIsKicking = true;
-                player.isKickOut = true;
+                //player.playerIsKicking = true;
+                //player.isKickOut = true;
 
                 //////Debug/////
                 //Debug.Log($"Ball clicked at {worldPosition}. Player is kicking: {player.playerIsKicking}, isKickOut: {player.isKickOut}");
                targetPosition = new Vector3(worldPosition.x, worldPosition.y,0);
             }
         }
-        if(player.isKickOut == false)
+        if(player.state == 0)
         {
             //I need make another different stage for the NPC get the ball
             transform.position = player.transform.position;
@@ -46,7 +47,7 @@ public class ballController : MonoBehaviour
         }
 
         // Rotating
-        if (player.isKickOut)
+        if (player.state == 1)
         {
             RotateBall();
             MoveToTarget();
