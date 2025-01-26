@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
     public bool isMoving;
     public bool playerIsKicking;
     public bool npcIsKicking;
-    public bool isKickOut;
+    public bool isKickOut = false;
     //Basic values for the player
     public float movingSpeed;
     //The clamp for the player(on field)
@@ -25,19 +25,23 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get input and calculate new position
-        Vector2 pos = transform.position;
-        pos.x += Input.GetAxisRaw("Horizontal") * movingSpeed * Time.deltaTime;
-        pos.y += Input.GetAxisRaw("Vertical") * movingSpeed * Time.deltaTime;
+        // Get the Input of keys
+        float moveX = Input.GetAxisRaw("Horizontal") * movingSpeed * Time.deltaTime;
+        float moveY = Input.GetAxisRaw("Vertical") * movingSpeed * Time.deltaTime;
 
-        // Clamp the position within bounds
-        pos.x = Mathf.Clamp(pos.x, TopLeft.position.x, BottomRight.position.x);
-        pos.y = Mathf.Clamp(pos.y, TopLeft.position.y, BottomRight.position.y);
+        // Adding the postion with new position
+        Vector3 newPosition = transform.position;
+        newPosition.x += moveX;
+        newPosition.y += moveY;
 
-        // Apply the position
-        transform.position = pos;
+        // Clamp the position to make sure keep it on field
+        newPosition.x = Mathf.Clamp(newPosition.x, TopLeft.position.x, BottomRight.position.x);
+        newPosition.y = Mathf.Clamp(newPosition.y, BottomRight.position.y, TopLeft.position.y); // 
 
-        // Check movement
+        // Update
+        transform.position = newPosition;
+
+        // MoingCheck
         movingChek();
     }
     void movingChek() {
