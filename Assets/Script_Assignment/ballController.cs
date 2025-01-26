@@ -17,33 +17,33 @@ public class ballController : MonoBehaviour
     Vector3 targetPosition;
     void Update()
     {
-        // Check the clicking of mouse
-        if (Input.GetMouseButtonDown(0)) // left button
-        {
-            // get the location
-            Vector3 mousePosition = Input.mousePosition;
-            // change the screen location to world location
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
-
-            // Check whether the location is in-between TopLeft and BottomRight range (on field)
-            if (worldPosition.x >= TopLeft.position.x && worldPosition.x <= BottomRight.position.x &&
-                worldPosition.y >= BottomRight.position.y && worldPosition.y <= TopLeft.position.y)
-            {
-                player.state = 1;
-                // Set playerController's playerIsKicking and isKickOut as true
-                //player.playerIsKicking = true;
-                //player.isKickOut = true;
-
-                //////Debug/////
-                //Debug.Log($"Ball clicked at {worldPosition}. Player is kicking: {player.playerIsKicking}, isKickOut: {player.isKickOut}");
-               targetPosition = new Vector3(worldPosition.x, worldPosition.y,0);
-            }
-        }
+    
         if(player.state == 0)
         {
             //I need make another different stage for the NPC get the ball
             transform.position = player.transform.position;
-            
+            // Check the clicking of mouse
+            if (Input.GetMouseButtonDown(0)) // left button
+            {
+                // get the location
+                Vector3 mousePosition = Input.mousePosition;
+                // change the screen location to world location
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
+
+                // Check whether the location is in-between TopLeft and BottomRight range (on field)
+                if (worldPosition.x >= TopLeft.position.x && worldPosition.x <= BottomRight.position.x &&
+                    worldPosition.y >= BottomRight.position.y && worldPosition.y <= TopLeft.position.y)
+                {
+                    player.state = 1;
+                    // Set playerController's playerIsKicking and isKickOut as true
+                    //player.playerIsKicking = true;
+                    //player.isKickOut = true;
+
+                    //////Debug/////
+                    //Debug.Log($"Ball clicked at {worldPosition}. Player is kicking: {player.playerIsKicking}, isKickOut: {player.isKickOut}");
+                    targetPosition = new Vector3(worldPosition.x, worldPosition.y, 0);
+                }
+            }
         }
 
         // Rotating
@@ -53,18 +53,21 @@ public class ballController : MonoBehaviour
             MoveToTarget();
         }
 
-        if (player.state == 2) 
+        else if (player.state == 2)
         {
             RotateBall();
             MoveToPlayer();
         }
+       
 
     }
 
     // Rotating Function
     void RotateBall()
     {
-        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        Vector3 rotating = transform.eulerAngles;
+        rotating.z -= rotationSpeed;
+        transform.eulerAngles = rotating;
     }
     void MoveToTarget()
     {
@@ -79,6 +82,7 @@ public class ballController : MonoBehaviour
         {
          //   player.isKickOut = false; // Stop moves
             transform.position = targetPosition; // Get to that location
+            //stop rotating
         }
     }
     void MoveToPlayer()
@@ -94,6 +98,7 @@ public class ballController : MonoBehaviour
         {
             //   player.isKickOut = false; // Stop moves
             transform.position = player.transform.position; // Get to that location
+            player.state = 0;
         }
 
     }
