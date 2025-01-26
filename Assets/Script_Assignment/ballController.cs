@@ -52,6 +52,13 @@ public class ballController : MonoBehaviour
             RotateBall();
             MoveToTarget();
         }
+
+        if (player.state == 2) 
+        {
+            RotateBall();
+            MoveToPlayer();
+        }
+
     }
 
     // Rotating Function
@@ -73,6 +80,22 @@ public class ballController : MonoBehaviour
          //   player.isKickOut = false; // Stop moves
             transform.position = targetPosition; // Get to that location
         }
+    }
+    void MoveToPlayer()
+    {
+        //normalize
+        Vector3 direction2 = (player.transform.position - transform.position).normalized;
+       
+        //move to the player as speed
+        transform.position += direction2 * Speed * Time.deltaTime;
+       
+        // If it is reach the target(player£©, stops moving
+        if (Vector3.Distance(transform.position, player.transform.position) < 0.1f)
+        {
+            //   player.isKickOut = false; // Stop moves
+            transform.position = player.transform.position; // Get to that location
+        }
+
     }
 }
 

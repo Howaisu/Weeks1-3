@@ -26,10 +26,10 @@ public class NPCLogic : MonoBehaviour
         {
             GoToBall();
         }
-        if (player.state == 2)
-        {
-            KickTheBall();
-        }
+        //if (player.state == 2)
+        //{
+        //    KickTheBall();
+        //}
         
 
     }
@@ -54,14 +54,21 @@ public class NPCLogic : MonoBehaviour
                 transform.position = ball.position; // Ensure the position again
                 Debug.Log("NPC has reached the ball!");
             }
-            else
-            {
-                player.state = 1;
-            }
+
+            //else
+            //{
+            //    player.state = 1;
+            //}
         }
     }
-    void KickTheBall()
-    { 
-    
-    }
+    //void KickTheBall()
+    //{
+    //    if (ball != null)
+    //    {
+    //        ball.position = transform.position;
+
+    //        // Collect the position of the ball, and normalize the location TO PLAYER
+    //        //Vector3 direction = (ball.position - player.transform.position).normalized;
+    //    }
+    //}
 }
