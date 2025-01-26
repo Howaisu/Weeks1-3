@@ -32,6 +32,7 @@ public class ballController : MonoBehaviour
                 // Set playerController's playerIsKicking and isKickOut as true
                 player.playerIsKicking = true;
                 player.isKickOut = true;
+
                 //////Debug/////
                 //Debug.Log($"Ball clicked at {worldPosition}. Player is kicking: {player.playerIsKicking}, isKickOut: {player.isKickOut}");
                targetPosition = new Vector3(worldPosition.x, worldPosition.y,0);
@@ -41,7 +42,7 @@ public class ballController : MonoBehaviour
         {
             //I need make another different stage for the NPC get the ball
             transform.position = player.transform.position;
-        
+            
         }
 
         // Rotating

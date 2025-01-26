@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
+    public int state;
     //write down those bool for different stages first
+    //The logic of these maybe not efficient, will be changed to state
     public bool isMoving;
     public bool playerIsKicking;
     public bool npcIsKicking;
