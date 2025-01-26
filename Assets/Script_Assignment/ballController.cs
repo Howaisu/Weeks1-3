@@ -39,6 +39,7 @@ public class ballController : MonoBehaviour
         }
         if(player.isKickOut == false)
         {
+            //I need make another different stage for the NPC get the ball
             transform.position = player.transform.position;
         
         }
@@ -58,17 +59,17 @@ public class ballController : MonoBehaviour
     }
     void MoveToTarget()
     {
-        // 计算当前位置到目标位置的方向向量并归一化
+        // normalize the direction between starting point and target point
         Vector3 direction = (targetPosition - transform.position).normalized;
 
-        // 按照速度移动球
+        // Move the ball as the speed
         transform.position += direction * Speed * Time.deltaTime;
 
-        // 如果接近目标位置，停止移动
+        // If it is reach the target, stops moving
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-            player.isKickOut = false; // 停止移动
-            transform.position = targetPosition; // 确保精确到目标位置
+         //   player.isKickOut = false; // Stop moves
+            transform.position = targetPosition; // Get to that location
         }
     }
 }
