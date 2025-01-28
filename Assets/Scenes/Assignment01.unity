@@ -644,8 +644,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leg: 2
   npc: {fileID: 1319609206}
-  swingSpeed: 120
-  maxAngle: 85
+  swingSpeed: 20
+  maxAngle: 55
 --- !u!1 &583079942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1239,40 @@ MonoBehaviour:
   player: {fileID: 700683915}
   TopLeft: {fileID: 1842436851}
   BottomRight: {fileID: 1056653059}
-  Speed: 6
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.53705084
+      outSlope: -0.53705084
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.69542193
+      value: 0.6265231
+      inSlope: -1.1531776
+      outSlope: -1.1531776
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08391572
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9916687
+      value: 0.47171402
+      inSlope: -0.5225679
+      outSlope: -0.5225679
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSpeed: 5
   rotationSpeed: 18
 --- !u!1 &1319609203
 GameObject:
@@ -1444,8 +1477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leg: 1
   npc: {fileID: 1319609206}
-  swingSpeed: 120
-  maxAngle: 85
+  swingSpeed: 20
+  maxAngle: 55
 --- !u!1 &1379317926
 GameObject:
   m_ObjectHideFlags: 0

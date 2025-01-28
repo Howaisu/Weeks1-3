@@ -9,13 +9,15 @@ public class ballController : MonoBehaviour
     public Transform TopLeft;
     public Transform BottomRight;
 
-    // the basic data of ball
+    // the basic data of ball///CURVE
     public AnimationCurve curve;
-    [Range(0, 4)] public float Speed;// (Don't forget make a speed curve later)
+    [Range(0, 5)] public float maxSpeed;// (Don't forget make a speed curve later)
     public float rotationSpeed = -1000f;
+    private Vector3 targetPosition; // Target position for the ball
+    private float elapsedTime = 0f; // Time counter for the curv
 
     //
-    Vector3 targetPosition;
+   // Vector3 targetPosition;
     void Update()
     {
     
@@ -56,7 +58,8 @@ public class ballController : MonoBehaviour
         
         else if (player.state == 2)
         {
-           rotationSpeed = -18f;
+            elapsedTime = 0f;//this is an extra, idk why others not work
+            rotationSpeed = -18f;
             RotateBall();
             MoveToPlayer();
         }
@@ -73,38 +76,46 @@ public class ballController : MonoBehaviour
     }
     void MoveToTarget()
     {
-        // normalize the direction between starting point and target point
+        //
+     
+        // Increment the elapsed time
+        elapsedTime += Time.deltaTime;
+
+        // Get the speed from the curve
+        float evaluatedSpeed = curve.Evaluate(elapsedTime) * maxSpeed;
+
+        // Debug the speed value
+        Debug.Log($"Evaluated Speed: {evaluatedSpeed}");
+
+        // Normalize the direction between the ball and target
         Vector3 direction = (targetPosition - transform.position).normalized;
 
-        // Move the ball as the speed
-        transform.position += direction * curve.Evaluate(Speed) * Time.deltaTime;
+        // Move the ball
+        transform.position += direction * evaluatedSpeed * Time.deltaTime;
 
-        // If it is reach the target, stops moving
+        // Stop moving if close enough to the target
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-         //   player.isKickOut = false; // Stop moves
-            transform.position = targetPosition; // Get to that location
-            //stop rotating
-           // player.state = 2;
-           rotationSpeed = 0;
+            transform.position = targetPosition;
+            rotationSpeed = 0; // Stop rotation
+            elapsedTime = 0f;
         }
     }
+
     void MoveToPlayer()
     {
-        //normalize
+        
         Vector3 direction2 = (player.transform.position - transform.position).normalized;
-       
-        //move to the player as speed
-        transform.position += direction2 * curve.Evaluate(Speed) * Time.deltaTime;
-       
-        // If it is reach the target(player£©, stops moving
+        float evaluatedSpeed = curve.Evaluate(elapsedTime) * maxSpeed;
+
+        transform.position += direction2 * evaluatedSpeed * Time.deltaTime;
+
         if (Vector3.Distance(transform.position, player.transform.position) < 0.1f)
         {
-            //   player.isKickOut = false; // Stop moves
-            transform.position = player.transform.position; // Get to that location
+            transform.position = player.transform.position;
             player.state = 0;
+            elapsedTime = 0f;
         }
-
     }
 }
 
