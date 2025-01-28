@@ -10,12 +10,14 @@ public class NPCLogic : MonoBehaviour
 
     //Basic Data
     public float Speed = 5f; // NPC speed (Don't forget make a speed curve later)
-  //  private bool isMovingToBall = false; // 
+                             //  private bool isMovingToBall = false; // 
+                             //detector
+    public bool npcIsMove;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        npcIsMove = false;
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class NPCLogic : MonoBehaviour
         {
 
 
-
+            npcIsMove=true;
             // Collect the position of the ball, and normalize the location
             Vector3 direction = (ball.position - transform.position).normalized;
 
@@ -53,6 +55,7 @@ public class NPCLogic : MonoBehaviour
                 player.state = 2;
                 transform.position = ball.position; // Ensure the position again
                 Debug.Log("NPC has reached the ball!");
+                npcIsMove = false; // wow, it works in first trial!!
             }
 
             //else

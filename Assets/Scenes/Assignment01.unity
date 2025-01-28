@@ -236,8 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016102c246f39c5438263b83a215d34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leg: 1
   player: {fileID: 700683915}
-  swingSpeed: -20
+  swingSpeed: 20
   maxAngle: 55
 --- !u!212 &205699968
 SpriteRenderer:
@@ -505,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016102c246f39c5438263b83a215d34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leg: 2
   player: {fileID: 700683915}
   swingSpeed: 20
   maxAngle: 55
@@ -1153,6 +1155,7 @@ MonoBehaviour:
   player: {fileID: 700683915}
   ball: {fileID: 1314985776}
   Speed: 5
+  npcIsMove: 0
 --- !u!1 &1379317926
 GameObject:
   m_ObjectHideFlags: 0
