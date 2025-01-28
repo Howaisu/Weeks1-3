@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class clockSwing : MonoBehaviour
+public class npcWalk : MonoBehaviour
 {
-    /* This Script is for the animation of character 
-     * 
-     */
+
+    // Haven't think a better and easy solution, so copy and paste for now
+    //---------------------------------------------------------------------//
+    
     //Leg Number
     public int leg;
     //Reference
-    public playerController player; // Get script of playerController
-   // public NPCLogic npc;// Get script of playerController
+  //  public playerController player; // Get script of playerController
+    public NPCLogic npc;// Get script of playerController
     //Basic Data
     public float swingSpeed = 120f; //Swing Speed
     public float maxAngle = 85f; // Half of the max angle
 
     private float timeCounter = 0f; // 时间计数器
     // The Switch
-    private bool isSwingingForward = true; // checking: swing to right or swing to left
+   // private bool isSwingingForward = true; // checking: swing to right or swing to left
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
+    // Update is called once per frame
     void Update()
     {
-
-        // Get the current angle and transfer into rotating
-        Vector3 rotating = transform.eulerAngles;
-
-
-        if (player.isMoving)
+       
+        if (npc.npcIsMove)
         {
             if (leg == 1)
             {
@@ -65,11 +68,10 @@ public class clockSwing : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 11);
             }
 
-        
+
 
 
 
         }
-       
     }
 }

@@ -10,7 +10,8 @@ public class ballController : MonoBehaviour
     public Transform BottomRight;
 
     // the basic data of ball
-    public float Speed = 4f;// (Don't forget make a speed curve later)
+    public AnimationCurve curve;
+    [Range(0, 4)] public float Speed;// (Don't forget make a speed curve later)
     public float rotationSpeed = -1000f;
 
     //
@@ -76,7 +77,7 @@ public class ballController : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
 
         // Move the ball as the speed
-        transform.position += direction * Speed * Time.deltaTime;
+        transform.position += direction * curve.Evaluate(Speed) * Time.deltaTime;
 
         // If it is reach the target, stops moving
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
@@ -94,7 +95,7 @@ public class ballController : MonoBehaviour
         Vector3 direction2 = (player.transform.position - transform.position).normalized;
        
         //move to the player as speed
-        transform.position += direction2 * Speed * Time.deltaTime;
+        transform.position += direction2 * curve.Evaluate(Speed) * Time.deltaTime;
        
         // If it is reach the target(player£©, stops moving
         if (Vector3.Distance(transform.position, player.transform.position) < 0.1f)
