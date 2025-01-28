@@ -40,6 +40,16 @@ public class playerController : MonoBehaviour
         newPosition.x = Mathf.Clamp(newPosition.x, TopLeft.position.x, BottomRight.position.x);
         newPosition.y = Mathf.Clamp(newPosition.y, BottomRight.position.y, TopLeft.position.y); // 
 
+        //
+
+        if (moveX < 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (moveX > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
         // Update
         transform.position = newPosition;
 
