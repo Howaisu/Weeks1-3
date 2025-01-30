@@ -85,7 +85,7 @@ public class ballController : MonoBehaviour
         float evaluatedSpeed = curve.Evaluate(elapsedTime) * maxSpeed;
 
         // Debug the speed value
-        Debug.Log($"Evaluated Speed: {evaluatedSpeed}");
+       // Debug.Log($"Evaluated Speed: {evaluatedSpeed}");
 
         // Normalize the direction between the ball and target
         Vector3 direction = (targetPosition - transform.position).normalized;

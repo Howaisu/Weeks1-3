@@ -20,12 +20,13 @@ public class cloudMove2 : MonoBehaviour
 
         Vector2 squareInScreenSpace = Camera.main.WorldToScreenPoint(pos);
 
+        //if it outside the ScreenSpace
         if (squareInScreenSpace.x < 0 || squareInScreenSpace.x > Screen.width)
         {
-            floatingSpeed = floatingSpeed * -1;
+            floatingSpeed = floatingSpeed * -1; //change direction
 
         }
-
+        //apply to the Object's position
         transform.position = pos;
     }
 }
